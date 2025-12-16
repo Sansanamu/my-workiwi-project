@@ -100,7 +100,7 @@ app.post('/api/chat', async (req, res) => {
 
     const chat = model.startChat({
       history: chatHistory,
-      generationConfig: { maxOutputTokens: 1000 },
+      generationConfig: { maxOutputTokens: 3000 },
     });
 
     // 4. 메시지 전송
