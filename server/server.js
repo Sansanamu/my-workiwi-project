@@ -1,4 +1,4 @@
-// server.js - Workiwi Backend API (In-Memory Version)
+// server.js - Workiwi Backend API (Real Communication Version)
 // 실행: node server.js
 
 const express = require('express');
@@ -77,7 +77,7 @@ app.post('/api/chat', async (req, res) => {
 
     // 2. Gemini 모델 설정
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash",
+      model: "gemini-2.5-flash",
       systemInstruction: {
         role: "system",
         parts: [{ text: buildSystemInstruction(settings, agentType) }]
@@ -86,10 +86,17 @@ app.post('/api/chat', async (req, res) => {
 
     // 3. 채팅 이력 구성 (Gemini 포맷에 맞춤)
     // 클라이언트에서 { sender: 'user'|'ai', text: '...' } 형태로 온다고 가정
-    const chatHistory = history.map(msg => ({
+    let chatHistory = history.map(msg => ({
       role: msg.sender === 'user' ? 'user' : 'model',
       parts: [{ text: msg.text }]
     }));
+
+    // [CRITICAL FIX] Gemini API 제약조건 해결
+    // History의 첫 번째 메시지는 반드시 'user' 역할이어야 합니다.
+    // 만약 첫 번째가 'model'이라면 제거합니다.
+    if (chatHistory.length > 0 && chatHistory[0].role === 'model') {
+      chatHistory.shift(); // 첫 번째 요소 제거
+    }
 
     const chat = model.startChat({
       history: chatHistory,
@@ -109,7 +116,11 @@ app.post('/api/chat', async (req, res) => {
 
   } catch (error) {
     console.error('Chat Error:', error);
-    res.status(500).json({ reply: "죄송합니다. AI 서버 연결 중 오류가 발생했습니다. (API Key를 확인해주세요)" });
+    // 에러 상세 내용을 로그로 출력하여 디버깅 용이하게 함
+    res.status(500).json({ 
+      reply: "죄송합니다. AI 서버 연결 중 오류가 발생했습니다.",
+      errorDetails: error.message 
+    });
   }
 });
 
