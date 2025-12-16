@@ -58,7 +58,18 @@ const INITIAL_RULES: ProjectRules = {
   tone: '친절하고 논리적인 어조',
 };
 
-const API_BASE_URL = 'http://localhost:3001/api';
+// [수정 완료] 환경 변수 안전하게 접근 (Optional Chaining 미지원 환경 대비)
+// import.meta가 비어있을 경우를 대비해 안전하게 확인합니다.
+const getApiUrl = () => {
+  // @ts-ignore
+  if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL) {
+    // @ts-ignore
+    return import.meta.env.VITE_API_URL;
+  }
+  return 'http://localhost:3001/api';
+};
+
+const API_BASE_URL = getApiUrl();
 
 // --- Independent Components (Defined Outside App to Prevent Remounting) ---
 
