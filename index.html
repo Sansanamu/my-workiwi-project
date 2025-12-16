@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김하늘 - Workiwi 프로젝트 포트폴리오</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        main: '#d68f84',        /* Coral Accent */
+                        mainHover: '#c0756a',
+                        base: '#fdf9f0',        /* Warm Beige Base */
+                        textMain: '#2c2520',    /* Dark Brown */
+                        textSub: '#5c5550',     /* Medium Brown */
+                        border: '#ebe5da'
+                    },
+                    fontFamily: {
+                        sans: ['"Poppins"', '"Noto Sans KR"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #fdf9f0; color: #2c2520; }
+        
+        /* Animation Classes */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Image Hover Effect */
+        .img-hover-zoom {
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        .img-hover-zoom img {
+            transition: transform 0.5s ease;
+        }
+        .img-hover-zoom:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="antialiased font-sans">
+
+    <nav class="fixed w-full z-50 bg-[#fdf9f0]/90 backdrop-blur-md border-b border-border transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-main tracking-tight">Kim Haneul</a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-textSub">
+                <a href="#about" class="hover:text-main transition-colors">소개</a>
+                <a href="#skills" class="hover:text-main transition-colors">기술 스택</a>
+                <a href="#project" class="hover:text-main transition-colors">프로젝트 상세</a>
+                <a href="#contact" class="hover:text-main transition-colors">연락처</a>
+            </div>
+            <a href="https://github.com/Sansanamu" target="_blank" class="text-textMain hover:text-main transition-colors text-xl">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        </div>
+    </nav>
+
+    <header id="about" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+        <div class="absolute top-20 -left-20 w-96 h-96 bg-main/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 -right-20 w-96 h-96 bg-orange-200/20 rounded-full blur-3xl"></div>
+
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center z-10">
+            <div class="fade-in-section order-2 md:order-1">
+                <span class="inline-block px-3 py-1 bg-white border border-main/30 rounded-full text-main text-xs font-bold mb-4 shadow-sm">
+                    Full Stack Developer
+                </span>
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6 text-textMain">
+                    팀의 파편화된<br/>
+                    AI 경험을 <span class="text-main">하나로 잇다.</span>
+                </h1>
+                <p class="text-lg text-textSub mb-8 leading-relaxed">
+                    안녕하세요, 개발자 <strong>김하늘</strong>입니다.<br/>
+                    비즈니스 문제를 기술로 해결하는 과정에 매력을 느낍니다.<br/>
+                    특히 <strong>시스템 프롬프트 엔지니어링</strong>과 <strong>데이터 파이프라인 설계</strong>를 통해<br/>
+                    팀의 협업 효율을 높이는 데 주력하고 있습니다.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#project" class="px-8 py-3 bg-main text-white rounded-xl font-semibold hover:bg-mainHover transition-all shadow-lg shadow-main/30">
+                        프로젝트 보기
+                    </a>
+                    <a href="mailto:sansadeer@naver.com" class="px-8 py-3 bg-white text-textMain border border-border rounded-xl font-semibold hover:bg-gray-50 transition-all">
+                        연락하기
+                    </a>
+                </div>
+            </div>
+            <div class="fade-in-section order-1 md:order-2 flex justify-center">
+                <div class="relative w-72 h-72 md:w-96 md:h-96">
+                    <div class="absolute inset-0 bg-main rounded-full opacity-10 blur-xl transform translate-y-4"></div>
+                    <img src="https://github.com/Sansanamu/my-workiwi-project/blob/master/portfolio/img/mainimg.png?raw=true" 
+                         alt="김하늘 프로필" 
+                         class="w-full h-full object-cover rounded-full border-4 border-white shadow-2xl relative z-10">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="skills" class="py-24 bg-white/50 border-y border-border">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16 text-textMain fade-in-section">Technical Skills</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 fade-in-section">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-border hover:border-main/50 transition-colors">
+                    <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500 mb-4 text-xl">
+                        <i class="fa-brands fa-react"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3">Frontend</h3>
+                    <ul class="text-sm text-textSub space-y-2">
+                        <li>TypeScript</li>
+                        <li>React</li>
+                        <li>Vite</li>
+                        <li>Tailwind CSS</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-border hover:border-main/50 transition-colors">
+                    <div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center text-green-500 mb-4 text-xl">
+                        <i class="fa-brands fa-node"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3">Backend</h3>
+                    <ul class="text-sm text-textSub space-y-2">
+                        <li>Node.js</li>
+                        <li>Express</li>
+                        <li>REST API Design</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-border hover:border-main/50 transition-colors">
+                    <div class="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-500 mb-4 text-xl">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3">AI & Data</h3>
+                    <ul class="text-sm text-textSub space-y-2">
+                        <li>Google Gemini API</li>
+                        <li>Prompt Engineering</li>
+                        <li>JSON Data Structuring</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-border hover:border-main/50 transition-colors">
+                    <div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-gray-500 mb-4 text-xl">
+                        <i class="fa-solid fa-toolbox"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3">Tools</h3>
+                    <ul class="text-sm text-textSub space-y-2">
+                        <li>Git & GitHub</li>
+                        <li>VS Code</li>
+                        <li>Figma (Basic)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project" class="py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-20 fade-in-section">
+                <span class="text-main font-bold tracking-wider text-sm uppercase">Main Project</span>
+                <h2 class="text-4xl font-bold mt-2 text-textMain">Workiwi</h2>
+                <p class="text-textSub mt-4 max-w-2xl mx-auto">팀 전용 생성형 AI 협업 워크스페이스</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 mb-24 items-start fade-in-section">
+                <div class="glass-card p-8 rounded-2xl shadow-lg border-l-4 border-l-red-400">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-exclamation text-red-400"></i> 문제 정의
+                    </h3>
+                    <p class="text-textSub leading-relaxed text-sm">
+                        소규모 팀 프로젝트 진행 시, 팀원들이 각자 다른 AI 툴을 사용하여 <strong>프롬프트와 컨텍스트가 파편화</strong>되는 문제가 발생했습니다. 이로 인해 결과물의 톤앤매너가 불일치하고, 중요한 기획 의도가 팀 전체에 공유되지 못해 <strong>협업 효율이 저하</strong>되었습니다.
+                    </p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl shadow-lg border-l-4 border-l-green-400">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb text-green-400"></i> 해결책
+                    </h3>
+                    <p class="text-textSub leading-relaxed text-sm">
+                        팀 단위의 <strong>단일화된 AI 컨텍스트(Single Source)</strong>를 제공하는 워크스페이스를 구축했습니다. 프로젝트의 룰셋을 백엔드에서 중앙 관리하여 AI에게 주입하고, 채팅 내용을 즉시 구조화된 문서로 변환하여 자산화했습니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mb-24 fade-in-section">
+                <h3 class="text-2xl font-bold mb-8 text-textMain border-l-4 border-main pl-4">시연 영상</h3>
+                <div class="bg-white p-2 rounded-2xl shadow-xl border border-border">
+                    <div class="aspect-video bg-black rounded-xl overflow-hidden relative">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/jSGzYHevHUY" 
+                            title="Workiwi Project Demo" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <p class="text-center text-sm text-textSub mt-4">Workiwi 실제 구동 및 시연 영상</p>
+            </div>
+
+            <div class="mb-24 fade-in-section">
+                <div class="bg-white p-2 rounded-2xl shadow-xl border border-border">
+                    <div class="img-hover-zoom aspect-video bg-gray-100">
+                        <img src="https://github.com/Sansanamu/my-workiwi-project/blob/master/portfolio/img/dashboard.png?raw=true" alt="Workiwi Dashboard" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <p class="text-center text-sm text-textSub mt-4">Workiwi 메인 대시보드 화면</p>
+            </div>
+
+            <div class="mb-24 fade-in-section">
+                <h3 class="text-2xl font-bold mb-8 text-textMain border-l-4 border-main pl-4">시스템 아키텍처 & 설계</h3>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="prose text-textSub">
+                        <p class="mb-4">
+                            React 기반의 SPA로 프론트엔드를 구성하고, Node.js/Express 백엔드를 통해 Gemini API와 통신하는 구조입니다.
+                        </p>
+                        <ul class="space-y-2 list-disc pl-5">
+                            <li><strong>Context Injection Layer:</strong> 사용자 질문 도달 전, 백엔드 미들웨어에서 프로젝트별 '룰셋'을 시스템 프롬프트로 결합.</li>
+                            <li><strong>In-Memory Storage:</strong> 빠른 프로토타이핑 검증을 위해 메모리 기반 저장소 구축 (향후 DB 확장 고려한 JSON 설계).</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-border shadow-md">
+                        <img src="https://github.com/Sansanamu/my-workiwi-project/blob/master/portfolio/img/line.png?raw=true" alt="Architecture Diagram" class="w-full rounded-lg">
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-32">
+                <div class="grid md:grid-cols-2 gap-12 items-center fade-in-section">
+                    <div class="order-2 md:order-1">
+                        <div class="text-main font-bold text-sm mb-2 uppercase tracking-wide">Key Feature 01</div>
+                        <h3 class="text-2xl font-bold mb-4 text-textMain">프로젝트 컨텍스트 주입 &<br/>역할별 에이전트</h3>
+                        <p class="text-textSub mb-6 leading-relaxed">
+                            사용자가 별도의 설명 없이 질문하더라도 AI가 프로젝트의 기술 스택, 코딩 컨벤션, 톤앤매너를 이미 알고 답변하도록 구현했습니다.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-main/10 flex items-center justify-center text-main font-bold shrink-0">1</div>
+                                <div>
+                                    <h4 class="font-bold text-textMain">동적 프롬프트 주입</h4>
+                                    <p class="text-sm text-textSub">백엔드에서 룰셋을 조회하여 System Prompt로 변환</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-main/10 flex items-center justify-center text-main font-bold shrink-0">2</div>
+                                <div>
+                                    <h4 class="font-bold text-textMain">페르소나 모드</h4>
+                                    <p class="text-sm text-textSub">PM, Dev, Designer 등 직무별 최적화된 답변 제공</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2 bg-white p-2 rounded-xl shadow-lg border border-border">
+                        <div class="img-hover-zoom aspect-[4/3] bg-gray-50">
+                            <img src="https://github.com/Sansanamu/my-workiwi-project/blob/master/portfolio/img/setting.png?raw=true" alt="Setting Feature" class="w-full h-full object-contain">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center fade-in-section">
+                    <div class="bg-white p-2 rounded-xl shadow-lg border border-border">
+                        <div class="img-hover-zoom aspect-[4/3] bg-gray-50">
+                            <img src="https://github.com/Sansanamu/my-workiwi-project/blob/master/portfolio/img/save.png?raw=true" alt="Chat to Doc Feature" class="w-full h-full object-contain">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-main font-bold text-sm mb-2 uppercase tracking-wide">Key Feature 02</div>
+                        <h3 class="text-2xl font-bold mb-4 text-textMain">채팅의 자산화<br/>(Chat-to-Doc 파이프라인)</h3>
+                        <p class="text-textSub mb-6 leading-relaxed">
+                            휘발되기 쉬운 AI와의 대화 내용을 클릭 한 번으로 구조화된 JSON 문서로 변환하여 저장합니다.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-main/10 flex items-center justify-center text-main font-bold shrink-0"><i class="fa-solid fa-code"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-textMain">데이터 구조화</h4>
+                                    <p class="text-sm text-textSub">텍스트를 제목, 본문, 타입으로 파싱하여 JSON 저장</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-main/10 flex items-center justify-center text-main font-bold shrink-0"><i class="fa-solid fa-eye"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-textMain">전용 뷰어 렌더링</h4>
+                                    <p class="text-sm text-textSub">가독성 높은 문서 형태로 즉시 열람 가능</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white border-t border-border">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16 text-textMain fade-in-section">성과 및 회고</h2>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16 fade-in-section">
+                <div class="col-span-1 md:col-span-1">
+                    <h3 class="text-xl font-bold mb-6 text-main">나의 기여</h3>
+                    <ul class="space-y-4 text-sm text-textSub">
+                        <li class="flex gap-2">
+                            <i class="fa-solid fa-check text-main mt-1"></i>
+                            <div><strong>Full Stack:</strong> React, Node.js 전체 아키텍처 설계 및 구현</div>
+                        </li>
+                        <li class="flex gap-2">
+                            <i class="fa-solid fa-check text-main mt-1"></i>
+                            <div><strong>Prompt Engineering:</strong> 컨텍스트 주입 로직 및 페르소나 설계</div>
+                        </li>
+                        <li class="flex gap-2">
+                            <i class="fa-solid fa-check text-main mt-1"></i>
+                            <div><strong>UX/UI:</strong> Cozy 테마 기반의 반응형 인터페이스 구현</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-span-1 md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-[#fdf9f0] p-6 rounded-xl border border-border flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-textMain mb-2"><i class="fa-solid fa-trophy text-yellow-500 mr-2"></i>성과</h4>
+                            <p class="text-sm text-textSub mb-4">
+                                팀 전용 AI 협업 환경 MVP를 구축하여, 실시간 컨텍스트 동기화 및 지식 자산화 프로세스를 기술적으로 검증했습니다.
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-4 border-t border-main/20 flex justify-between items-center text-sm">
+                            <span class="font-bold text-textSub">사용자 확보</span>
+                            <span class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600">0명 (MVP 단계)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-[#fdf9f0] p-6 rounded-xl border border-border">
+                        <h4 class="font-bold text-textMain mb-2"><i class="fa-solid fa-book-open text-blue-500 mr-2"></i>배운 점</h4>
+                        <p class="text-sm text-textSub">
+                            단순 API 호출을 넘어, 시스템 프롬프트로 AI 행동을 제어하는 방법론과 상태 관리를 통한 유기적인 UX 설계 경험을 얻었습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center fade-in-section">
+                <div class="inline-block bg-gray-100 px-6 py-3 rounded-full text-sm text-textSub">
+                    <strong>Next Step:</strong> Supabase를 통한 데이터 영속성 확보 & RAG(검색 증강 생성) 도입 예정
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-[#2c2520] text-[#fdf9f0] py-20">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-8">Thank You</h2>
+            <p class="text-gray-400 mb-12">
+                https://myworkiwi-front.vercel.app/
+                팀의 문제를 기술로 해결하는 과정에 관심이 많습니다.<br/>
+                Workiwi 프로젝트에 대해 더 이야기 나누고 싶으시다면 연락주세요.
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center gap-8 items-center text-lg">
+                <a href="mailto:sansadeer@naver.com" class="flex items-center gap-3 hover:text-main transition-colors">
+                    <i class="fa-solid fa-envelope"></i> sansadeer@naver.com
+                </a>
+                <a href="https://github.com/Sansanamu" target="_blank" class="flex items-center gap-3 hover:text-main transition-colors">
+                    <i class="fa-brands fa-github"></i> github.com/Sansanamu
+                </a>
+            </div>
+            
+            <div class="mt-16 text-xs text-gray-600 border-t border-gray-800 pt-8">
+                &copy; 2024 Kim Haneul. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for Fade-in Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
